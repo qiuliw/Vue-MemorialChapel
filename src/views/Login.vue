@@ -3,12 +3,41 @@ import Holder from '@/components/Holder.vue';
 import LoginForm from '@/components/LoginForm.vue';
 import { NCard, NSpace } from 'naive-ui';
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+
 const audio = ref();
+const isPlaying = ref(false);
+
+// 用户交互后播放音频
+const playAudio = () => {
+    if (audio.value && !isPlaying.value) {
+        audio.value.play().then(() => {
+            isPlaying.value = true;
+        }).catch((error) => {
+            console.log('Audio play failed:', error);
+        });
+    }
+}
+
+// 在用户与页面交互后播放音频
 onMounted(() => {
-    audio.value.play();
+    // 添加用户交互事件监听器
+    const userInteractions = ['click', 'touchstart', 'keydown'];
+    const playAudioOnce = () => {
+        playAudio();
+        userInteractions.forEach(event => {
+            document.removeEventListener(event, playAudioOnce);
+        });
+    };
+    
+    userInteractions.forEach(event => {
+        document.addEventListener(event, playAudioOnce, { once: true });
+    });
 })
+
 onBeforeUnmount(() => {
-    audio.value.pause();
+    if (audio.value) {
+        audio.value.pause();
+    }
 })
 
 const play = () => {
@@ -24,13 +53,13 @@ const pause = () => {
         <div class="snow" v-for="index in 100" :key="index"></div>
 
         <NSpace>
-            <LoginForm class="form" />
+            <LoginForm class="form" @focus="playAudio" />
             
         </NSpace>
 
     </div>
 
-    <audio ref="audio" src="../../public/audios/王酩 - 出殡 (乐曲).mp3"></audio>
+    <audio ref="audio" src="./audios/王酩 - 出殡 (乐曲).mp3"></audio>
 </template>
 
 

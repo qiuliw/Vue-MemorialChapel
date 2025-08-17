@@ -308,46 +308,46 @@ const createModalVisible = ref(false);
 var musicList = [
     {
         "name": "我记得",
-        "audio_url": "./audios/我记得.mp3",
+        "audio_url": "/Vue-MemorialChapel/audios/我记得.mp3",
         "singer": "赵雷",
         "album": "少年",
-        "cover": "./imgs/0.jpg",
+        "cover": "/Vue-MemorialChapel/imgs/0.jpg",
         "time": "05:29"
     },
     {
         "name": "成都",
-        "audio_url": "./audios/成都.mp3",
+        "audio_url": "/Vue-MemorialChapel/audios/成都.mp3",
         "singer": "赵雷",
         "album": "成都",
-        "cover": "./imgs/1.jpg"
+        "cover": "/Vue-MemorialChapel/imgs/1.jpg"
     },
     {
         "name": "南方姑娘",
-        "audio_url": "./audios/南方姑娘.mp3",
+        "audio_url": "/Vue-MemorialChapel/audios/南方姑娘.mp3",
         "singer": "赵雷",
         "album": "赵小雷",
-        "cover": "./imgs/2.jpg"
+        "cover": "/Vue-MemorialChapel/imgs/2.jpg"
     },
     {
         "name": "阴天快乐",
-        "audio_url": "./audios/阴天快乐.mp3",
+        "audio_url": "/Vue-MemorialChapel/audios/阴天快乐.mp3",
         "singer": "陈奕迅",
         "album": "Rice&Shine",
-        "cover": "./imgs/3.jpg"
+        "cover": "/Vue-MemorialChapel/imgs/3.jpg"
     },
     {
         "name": "爱情转移",
-        "audio_url": "./audios/爱情转移.mp3",
+        "audio_url": "/Vue-MemorialChapel/audios/爱情转移.mp3",
         "singer": "陈奕迅",
         "album": "认了吧",
-        "cover": "./imgs/4.jpg"
+        "cover": "/Vue-MemorialChapel/imgs/4.jpg"
     },
     {
         "name": "火葬场之歌",
-        "audio_url": "./audios/火葬场之歌.mp3",
+        "audio_url": "/Vue-MemorialChapel/audios/火葬场之歌.mp3",
         "singer": "钨丝,梦魇",
         "album": "死有分",
-        "cover": "./imgs/5.jpg"
+        "cover": "/Vue-MemorialChapel/imgs/5.jpg"
     }
 ];
 // 当前播放哪一首歌曲
