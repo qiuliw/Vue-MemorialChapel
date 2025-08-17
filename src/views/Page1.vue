@@ -50,7 +50,7 @@
                 <n-list-item @click="modalPlay(index)" :class="playing[index]" v-for="(item, index) in musicList">
                     <n-thing>
                         <div style="display: flex;justify-content: space-between;width: 100%;">
-                            <span>{{ item.name }}</span>
+                            <span>{{ item.name }}  &nbsp; -  &nbsp; {{ item.singer }} </span>
                             <span :class="['fa', 'icon', 'fa-play-circle', modalIconClass[index]]" style="font-size: 20px;color: gray;"></span>
                         </div>
                     </n-thing>
@@ -121,6 +121,7 @@
                     margin-top: 3px;
 
                     .music_progress_line {
+                        position: relative;
                         width: 0%;
                         height: 100%;
                         background-color: #f2709b;
@@ -340,6 +341,13 @@ var musicList = [
         "singer": "陈奕迅",
         "album": "认了吧",
         "cover": "./imgs/4.jpg"
+    },
+    {
+        "name": "火葬场之歌",
+        "audio_url": "./audios/火葬场之歌.mp3",
+        "singer": "钨丝,梦魇",
+        "album": "死有分",
+        "cover": "./imgs/5.jpg"
     }
 ];
 // 当前播放哪一首歌曲
@@ -466,10 +474,10 @@ const format = (s) => {
 // 进度条对象
 const lineDom = ref();
 
-// 歌曲播放时触发的事件
+// 歌曲播放时触发的事件,自动更新进度条
 const updateTime = (e) => {
-    currentTimeStr.value = format(e.target.currentTime);
-    let persent = e.target.currentTime / totalTime.value * 100;
+    currentTimeStr.value = format(audio.value.currentTime);
+    let persent = audio.value.currentTime /  audio.value.duration * 100;
     lineDom.value.style = "width:" + persent + "%";
 }
 // 歌曲播放结束
@@ -483,8 +491,10 @@ onMounted(() => {
     //     render(musicList[currentIndex.value]);
     // })
     render(musicList[currentIndex.value]);
-
-
+    audio.value.ondurationchange = () => {
+        playMusicOther();
+        audio.value.play();
+    }
 })
 
 
@@ -513,19 +523,15 @@ const closeMusicList = () => {
     modalDom.value.style = 'display:none';
 }
 
-
 const progressBar = ref();
 // 点击进度条
 const progressClick = (e) => {
 
-
-
     const rect = progressBar.value.getBoundingClientRect();
 
+    let persent = Math.floor(e.clientX - rect.left) / rect.width * 100;
 
-    let persent = (e.clientX - rect.left) / rect.width * 100;
-    console.log(persent);
-    lineDom.value.style = 'width:' + persent + "%";
     audio.value.currentTime = persent * audio.value.duration / 100;
+
 }
 </script>

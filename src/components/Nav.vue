@@ -1,6 +1,6 @@
 <template>
     <div class="nav">
-        <div class="log">
+        <div class="log" @click="goT">
             <img src=".././assets/lt.svg" alt="" srcset="">
         </div>
         <ul>
@@ -11,10 +11,15 @@
             <div class="fa fa-search i-search"/>
         </div>
         <div class="buy-car">
-            <div class="fa fa-shopping-cart i-car"/>
-            <router-link to="/buy"
-            style="margin: 0 10px;color: pink;"
-            >买香</router-link>
+            
+            <RouterLink to="/buy">
+              <n-button quaternary>
+                <div class="fa fa-shopping-cart i-car" style="color: cadetblue;"/>
+                <n-gradient-text type="info" size="22">
+                去买香
+                </n-gradient-text></n-button>
+
+            </RouterLink>
         </div>
     </div>
 </template>
@@ -24,11 +29,17 @@
 import {ref} from "vue";
 import { defineProps,watch } from 'vue';
 import { useMessage } from "naive-ui";
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const msg = useMessage();
 
+const goT = ()=>{
+    router.push('/login');
+}
+
 // 导航栏内容
-const tabNameList=ref(["安魂曲","昨日之亲","列祖列宗","家族轶事","入住"]);
+const tabNameList=ref(["安魂曲","昨日之亲","列祖列宗","香火鼎盛","入住"]);
 
 //-------导航栏随动-----------
 const tabCurrentList=ref(['current']);// li的current样式数组
@@ -62,7 +73,7 @@ function goTo(index){
     position: fixed;z-index: 2;width:100%;height: 3rem;
     display: flex;align-items: center;
     // border-bottom: white solid 1px;
-    background-color: #303030;
+    background-color: transparent;
     // log
     .log{
         height: 100%;
@@ -134,14 +145,30 @@ function goTo(index){
     .buy-car{
         margin-right: 20px;
         cursor:pointer;
-        color: rgb(241, 96, 120);
+        color: rgb(53, 65, 135);
         span{
             margin-left: 10px;
             font-size: 1.1rem;
         }
     }
 }
+.buyText{
+    color:#929292
+}
 
-
-
+@media (max-width:800px) {
+    .seach{
+        display: none;
+        .n-input{
+            display: none;
+        }
+        .i-search{
+            display: none;
+        }
+    }
+    .buy-car{
+        display: none;
+    }
+    
+}
 </style>

@@ -29,13 +29,12 @@ export default defineConfig({
     }),
     Components({
       resolvers: [NaiveUiResolver()]
-    }),
-
+    })
   ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
-  base: '/Vue-MemorialChapel/'
+  base: './'
 });
