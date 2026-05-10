@@ -1,3 +1,8 @@
+# 丘の灵堂 Web Demo
+
+<img width="2560" height="1305" alt="image" src="https://github.com/user-attachments/assets/88fc2c66-7ac5-473b-810f-4cee8cc132ad" />
+
+<img width="2560" height="1305" alt="image" src="https://github.com/user-attachments/assets/227524d7-6ee0-4eee-92f3-2ed48b99f090" />
 
 ## Project Setup
 
